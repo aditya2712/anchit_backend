@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +39,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
 ]
 
-CUSTOM_APPS = []
+CUSTOM_APPS = ["contactus"]
 
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -129,3 +134,19 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL")
+
+ADMIN_EMAIL = []
+# get admin_email from .env
+for k, v in dotenv_values().items():
+    if k.startswith("ADMIN_EMAIL"):
+        ADMIN_EMAIL.append(v)
+
+
+# Twilio SendGrid
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
