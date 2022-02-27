@@ -12,22 +12,22 @@ class ContactUsCreate(APIView):
         message = serializers.CharField(max_length=4096)
 
     def post(self, request, format=None):
-        # request_body = request.data
         serializer = self.input_serializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             email = serializer.data["email"]
             name = serializer.data["name"]
             message = serializer.data["message"]
             final_message = f"Email: {email} \nName: {name} \nMessage: {message}"
             email_subject = f"New contact: {email}: {name}"
             email_message = final_message
+            print(final_message)
             send_mail(
                 email_subject,
                 email_message,
                 settings.CONTACT_EMAIL,
                 settings.ADMIN_EMAIL,
             )
-            return Response({"message": "Successfuly sent email"})
+            return Response(data={"message": "Successfully sent email"}, status=200)
 
 
 # Sample request body
