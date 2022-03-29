@@ -26,6 +26,7 @@ class ContactUsCreate(APIView):
                 email_message,
                 settings.CONTACT_EMAIL,
                 settings.ADMIN_EMAIL,
+                fail_silently=False,
             )
             print("response after sending email: ", send_mail_response)
             return Response(data={"message": "Successfully sent email"}, status=200)
