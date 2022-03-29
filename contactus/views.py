@@ -21,12 +21,13 @@ class ContactUsCreate(APIView):
             email_subject = f"New contact: {email}: {name}"
             email_message = final_message
             print(final_message)
-            send_mail(
+            send_mail_response = send_mail(
                 email_subject,
                 email_message,
                 settings.CONTACT_EMAIL,
                 settings.ADMIN_EMAIL,
             )
+            print("response after sending email: ", send_mail_response)
             return Response(data={"message": "Successfully sent email"}, status=200)
 
 
