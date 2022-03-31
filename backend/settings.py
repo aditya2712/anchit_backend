@@ -145,6 +145,8 @@ CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL")
 
 ADMIN_EMAIL = [
     "aa27122001@gmail.com",
+    "anchit@kadambintelligence.com",
+    "arsh@kadambintelligence.com",
 ]
 
 
