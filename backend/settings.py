@@ -143,11 +143,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL")
 
-ADMIN_EMAIL = ["aa27122001@gmail.com"]
-# get admin_email from .env
-for k, v in dotenv_values().items():
-    if k.startswith("ADMIN_EMAIL"):
-        ADMIN_EMAIL.append(v)
+ADMIN_EMAIL = [
+    "aa27122001@gmail.com",
+]
 
 
 # Twilio SendGrid
@@ -156,7 +154,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
-
-print(EMAIL_HOST_PASSWORD)
-print(ADMIN_EMAIL)
-print(CONTACT_EMAIL)
