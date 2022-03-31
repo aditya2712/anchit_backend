@@ -143,7 +143,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL")
 
-ADMIN_EMAIL = []
+ADMIN_EMAIL = ["aa27122001@gmail.com"]
 # get admin_email from .env
 for k, v in dotenv_values().items():
     if k.startswith("ADMIN_EMAIL"):
